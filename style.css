@@ -1,1 +1,37 @@
+body {
+    height: 100vh;
+    margin: 0;
+    overflow: hidden;
+    font-family: Roboto, sans-serif;
+    color: black;
+    overflow-y: auto;
+    overflow-x: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+}
+
+form {
+    display: grid;
+    grid-template-columns: 30rem;
+    grid-template-rows: 5rem;
+    border: 5px solid green;
+    margin: 2rem;
+}
+
+form h1 {
+    grid-area: 1/1/1/-1;
+    justify-self: center;
+}
+
+form>div {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+}
+
+form.hidden {
+    display: none;
+}
 
