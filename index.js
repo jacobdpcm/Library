@@ -28,23 +28,34 @@ function updateLibrary(libraryArray){
     const library = document.querySelector('.library');
     const bookspot = document.createElement('div');
     bookspot.classList.add('example');
+    const nontitlespot = document.createElement('div');
     library.appendChild(bookspot);
 
     const title = document.createElement('div');
+    title.classList.add('title');
     title.textContent = element.title;
     bookspot.appendChild(title);
 
+    //Separate title from the rest for Space-between
+    bookspot.appendChild(nontitlespot);
+
     const author = document.createElement('div');
-    author.textContent = "By" + element.author;
-    bookspot.appendChild(author);
+    if(element.author === ''){
+      element.author = 'N/A';
+    }
+    author.textContent = "By " + element.author;
+    nontitlespot.appendChild(author);
 
     const pages = document.createElement('div');
-    pages.textContent = element.pages + "Pages";
-    bookspot.appendChild(pages);
+    if(element.pages === ''){
+      element.pages = 'N/A';
+    }
+    pages.textContent = element.pages + " Pages";
+    nontitlespot.appendChild(pages);
 
     const read = document.createElement('div');
     read.textContent = element.read;
-    bookspot.appendChild(read);
+    nontitlespot.appendChild(read);
     
   });
 }
