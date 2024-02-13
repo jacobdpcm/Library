@@ -5,8 +5,13 @@ function Book(title, author, pages, read){
     this.read = read;
   }
 
-Book.prototype.info = function(){
-    return this.title + ' by ' + this.author + ', ' + this.pages + ' pages, ' + read;
+Book.prototype.readToggle = function(){
+  if(this.read === 'Not Read')
+    {
+      this.read = 'Read'
+    } else {
+      this.read = 'Not Read'
+    }
 }
 
 function addBook(libraryArray){
@@ -31,6 +36,26 @@ function deletionActive() {
       library.splice(index, 1)
       console.log(library)
       updateLibrary(library)
+    })
+  })
+}
+
+function readToggleActive(library){
+  const readDivs = document.querySelectorAll('.readToggle')
+  readDivs.forEach((readDiv, index) => {
+    readDiv.addEventListener('click', () => {
+      if(readDiv.textContent === 'Read'){
+        readDiv.textContent = 'Not Read';
+        readDiv.classList.remove('read');
+        readDiv.classList.add('notread')
+      } else {
+        readDiv.textContent = 'Read';
+        readDiv.classList.remove('notread');
+        readDiv.classList.add('read');     
+      }
+
+      library[index].readToggle();
+      console.log(library);
     })
   })
 }
@@ -76,6 +101,7 @@ function updateLibrary(libraryArray){
 
     const read = document.createElement('div');
     read.textContent = element.read;
+    read.classList.add('readToggle');
     if(read.textContent === 'Read'){
       read.classList.add('read');
     } else {
@@ -90,6 +116,7 @@ function updateLibrary(libraryArray){
   });
 
   deletionActive();
+  readToggleActive(library);
 }
 
 function clearFields(){

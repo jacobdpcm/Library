@@ -111,6 +111,10 @@ form.hidden {
     color: red;
 }
 
+.readToggle {
+    cursor: pointer;
+}
+
 .delete {
     height: 1.4rem;
     width: 1.4rem;
