@@ -13,10 +13,31 @@ function addBook(libraryArray){
   const title = document.querySelector('#title');
   const author = document.querySelector('#author');
   const pages = document.querySelector('#pages');
-  const read = document.querySelector('#read');
+  const read = document.querySelector('input[name=read]:checked')
 
   const theBook = new Book(title.value, author.value, pages.value, read.value)
   libraryArray.push(theBook);
+
+  clearFields();
+}
+
+function deletionActive() {
+  const deleteButtons = document.querySelectorAll('.delete');
+
+  deleteButtons.forEach((button, index) => {
+    button.addEventListener('click', () => {
+      console.log(index)
+      console.log(library)
+      library.splice(index, 1)
+      console.log(library)
+      updateLibrary(library)
+    })
+  })
+}
+
+function clearLibrary(){
+  const libraryShelf = document.querySelector('.library');
+  libraryShelf.innerHTML = ''
 }
 
 function updateLibrary(libraryArray){
@@ -55,14 +76,29 @@ function updateLibrary(libraryArray){
 
     const read = document.createElement('div');
     read.textContent = element.read;
+    if(read.textContent === 'Read'){
+      read.classList.add('read');
+    } else {
+      read.classList.add('notread');
+    }
     nontitlespot.appendChild(read);
-    
+
+    const deleteButton = document.createElement('button');
+    deleteButton.classList.add('delete');
+    deleteButton.textContent = 'X';
+    nontitlespot.appendChild(deleteButton);
   });
+
+  deletionActive();
 }
 
-function clearLibrary(){
-  const library = document.querySelector('.library');
-  library.innerHTML = ''
+function clearFields(){
+  const title = document.querySelector('#title');
+  const author = document.querySelector('#author');
+  const pages = document.querySelector('#pages');
+  title.value = '';
+  author.value = '';
+  pages.value = '';
 }
 
 
@@ -71,6 +107,7 @@ let library = [];
 const newButton = document.querySelector('.new');
 const form = document.querySelector('form');
 const confirmButton = document.querySelector('.confbut');
+let deletionNodes = '';
 
 newButton.addEventListener('click', () => form.classList.toggle('hidden'));
 
@@ -78,5 +115,6 @@ confirmButton.addEventListener('click', () => {
   addBook(library);
   updateLibrary(library);
 });
+
 
 
