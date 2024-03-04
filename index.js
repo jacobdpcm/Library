@@ -1,18 +1,37 @@
-function Book(title, author, pages, read){
+/*function Book(title, author, pages, read){
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.read = read;
+  }
+  */
+
+class Book {
+  constructor(title, author, pages, read){
     this.title = title;
     this.author = author;
     this.pages = pages;
     this.read = read;
   }
 
-Book.prototype.readToggle = function(){
+  readToggle(){
+    if(this.read === 'Not Read')
+      {
+        this.read = 'Read'
+      } else {
+        this.read = 'Not Read'
+      }
+  }
+}
+
+/*Book.prototype.readToggle = function(){
   if(this.read === 'Not Read')
     {
       this.read = 'Read'
     } else {
       this.read = 'Not Read'
     }
-}
+}*/
 
 function addBook(libraryArray){
   const title = document.querySelector('#title');
